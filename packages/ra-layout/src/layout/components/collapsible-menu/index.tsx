@@ -1,14 +1,12 @@
 import clsx from "clsx";
 import React, { useState } from "react";
-import List from "@material-ui/core/List";
-import Tooltip from "@material-ui/core/Tooltip";
-import MenuItem from "@material-ui/core/MenuItem";
-import Collapse from "@material-ui/core/Collapse";
-import Typography from "@material-ui/core/Typography";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import ChevronRight from "@material-ui/icons/ChevronRight";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Typography from "@mui/material/Typography";
+import Collapse from "@mui/material/Collapse";
+import List from "@mui/material/List";
+import { ExpandMore, ChevronRight } from "@mui/icons-material";
 
 import { useStyles } from "./styles";
 
@@ -47,7 +45,6 @@ export const CollapsibleMenu: React.FC<CollapsibleMenuProps> = ({
     <>
       <MenuItemContainer>
         <MenuItem
-          button
           className={clsx(styles.listItem, layoutStyles.listItem)}
           onClick={() => setIsOpen(!isOpen)}
         >

@@ -1,12 +1,10 @@
 import clsx from "clsx";
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Tooltip from "@material-ui/core/Tooltip";
+import { Avatar, Tooltip } from "@mui/material";
 import { MenuItemLink, useGetIdentity } from "react-admin";
 
-import PersonOutlined from "@material-ui/icons/PersonOutlined";
-
 import { useStyles } from "./styles";
+import { PersonOutlined } from "@mui/icons-material";
 
 // TODO: improve typings
 export type UserProfileProps = {
@@ -15,11 +13,11 @@ export type UserProfileProps = {
 
 // TODO: improve component
 export const UserProfile: React.FC<UserProfileProps> = ({ layoutStyles }) => {
-  const { loading, identity: user } = useGetIdentity();
+  const { identity: user, isLoading } = useGetIdentity();
 
   const styles = useStyles();
 
-  if (!loading && !!user) {
+  if (!isLoading && !!user) {
     const firstLetters = user?.fullName
       ?.split(" ")
       .map((parts: any) => parts[0])
@@ -39,7 +37,10 @@ export const UserProfile: React.FC<UserProfileProps> = ({ layoutStyles }) => {
                 />
               )}
               {(!user || (!!user && !user.avatar)) && (
-                <Avatar alt={user?.fullName} className={clsx(styles.small, layoutStyles.avatar)}>
+                <Avatar
+                  alt={user?.fullName}
+                  className={clsx(styles.small, layoutStyles.avatar)}
+                >
                   {firstLetters}
                 </Avatar>
               )}
@@ -48,7 +49,6 @@ export const UserProfile: React.FC<UserProfileProps> = ({ layoutStyles }) => {
           primaryText={user?.fullName}
           className={clsx(styles.menuLink, layoutStyles.menuLink)}
           to="/"
-          sidebarIsOpen
         />
       </Tooltip>
     );
@@ -60,7 +60,6 @@ export const UserProfile: React.FC<UserProfileProps> = ({ layoutStyles }) => {
       primaryText="Cargando..."
       className={clsx(styles.menuLink, layoutStyles.menuLink)}
       leftIcon={<PersonOutlined />}
-      sidebarIsOpen
     />
   );
 };

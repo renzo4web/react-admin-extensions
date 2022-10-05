@@ -1,10 +1,8 @@
 import clsx from "clsx";
 import React from "react";
-import { useSelector } from "react-redux";
-import Divider from "@material-ui/core/Divider";
-import { Sidebar, MenuItemLink, useLogout } from "react-admin";
-
-import LogoutIcon from "@material-ui/icons/PowerSettingsNewOutlined";
+import { Divider } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Sidebar, MenuItemLink, useLogout, useSidebarState } from "react-admin";
 
 import { UserProfile as DefaultUserProfile } from "../user-profile";
 import { useStyles } from "./styles";
@@ -15,8 +13,8 @@ export type SideDrawerProps = {
   iconStyle: any;
   sidebarOpenWidth: number;
   sidebarClosedWidth: number;
-  sidebarElevation: number
-  showDividers: boolean
+  sidebarElevation: number;
+  showDividers: boolean;
 };
 
 export const SideDrawer: React.FC<SideDrawerProps> = ({
@@ -27,9 +25,9 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
   sidebarOpenWidth,
   sidebarClosedWidth,
   sidebarElevation,
-  showDividers
+  showDividers,
 }) => {
-  const isSidebarOpen = useSelector((state) => state.admin.ui.sidebarOpen);
+  const [isSidebarOpen] = useSidebarState();
   const logout: any = useLogout();
 
   const styles = useStyles();
@@ -57,7 +55,7 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
           [layoutStyles.sidebarWhenOpen]: !!layoutStyles.sidebarWhenOpen,
           [layoutStyles.sidebarWhenClosed]: !!layoutStyles.sidebarWhenClosed,
         }),
-        elevation: sidebarElevation
+        elevation: sidebarElevation,
       }}
     >
       <>

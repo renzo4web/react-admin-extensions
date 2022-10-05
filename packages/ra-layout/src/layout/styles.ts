@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/core/styles";
-
 // TODO: add support to configure appBarHeight, sidebarMinWidth, sidebarMaxWidth
+import { makeStyles } from "@mui/material/styles";
+
 export const useStyles = makeStyles((theme) => ({
   root: {
     zIndex: 1000,

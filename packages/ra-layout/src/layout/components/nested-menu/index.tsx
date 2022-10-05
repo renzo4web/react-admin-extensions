@@ -1,10 +1,8 @@
 import qs from "qs";
 import clsx from "clsx";
 import React, { useCallback } from "react";
-import { useSelector } from "react-redux";
-import { MenuItemLink } from "react-admin";
-
-import DefaultIcon from "@material-ui/icons/ViewList";
+import { MenuItemLink, useSidebarState } from "react-admin";
+import ListIcon from "@mui/icons-material/List";
 
 import { CollapsibleMenu } from "../collapsible-menu";
 
@@ -19,7 +17,7 @@ export type NestedMenuProps = {
 
 export const NestedMenu: React.FC<NestedMenuProps> = React.memo(
   ({ items = [], layoutStyles, iconStyle }) => {
-    const isSidebarOpen = useSelector((state) => state.admin.ui.sidebarOpen);
+    const [isSidebarOpen] = useSidebarState();
 
     const styles = useStyles();
 
@@ -53,11 +51,7 @@ export const NestedMenu: React.FC<NestedMenuProps> = React.memo(
             primaryText={label || name}
             sidebarIsOpen={isSidebarOpen}
             leftIcon={
-              Icon ? (
-                <Icon style={iconStyle} />
-              ) : (
-                <DefaultIcon style={iconStyle} />
-              )
+              Icon ? <Icon style={iconStyle} /> : <ListIcon style={iconStyle} />
             }
           />
         );

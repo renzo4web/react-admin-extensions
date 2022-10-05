@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Notification, setSidebarVisibility } from "react-admin";
+import {Notification, useSidebarState} from "react-admin";
 
 import { Header } from "./components/header";
 import { SideDrawer } from "./components/side-drawer";
@@ -83,16 +82,15 @@ export const Layout: React.FC<LayoutProps> = ({
   logo,
   logoStyle
 }) => {
-  const isSidebarOpen = useSelector((state) => state.admin.ui.sidebarOpen);
-  const dispatch = useDispatch();
+  const [isSidebarOpen,setIsSidebarOpen] = useSidebarState();
 
   const styles = useStyles();
 
   useEffect(() => {
-    dispatch(setSidebarVisibility(true));
+    setIsSidebarOpen(true)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setSidebarVisibility]);
+  }, [setIsSidebarOpen]);
 
   return (
     <div className={clsx(styles.root, layoutStyles.root)}>

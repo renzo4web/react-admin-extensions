@@ -1,16 +1,20 @@
 import React from "react";
 import { AppBar } from "react-admin";
-import { Typography } from "@material-ui/core";
+import Typography from "@mui/material/Typography";
 
 import { useStyles } from "./styles";
 
 // TODO: improve typings
 export type HeaderProps = {
-  logo?: string
-  logoStyle?: any
+  logo?: string;
+  logoStyle?: any;
 };
 
-export const Header: React.FC<HeaderProps> = ({ logo, logoStyle, ...props }) => {
+export const Header: React.FC<HeaderProps> = ({
+  logo,
+  logoStyle,
+  ...props
+}) => {
   const styles = useStyles();
 
   return (
